@@ -14,7 +14,7 @@ let rightMoveOffset = 0;
 
 function speedToAngle(speed: number): number { return (speed / 100 * 90 + 90) }
 /** * Drive a robot using continuous rotation servos. */ 
-//% color="#f4e008" icon="\uf1b9" block="Movement" 
+//% color="#f4e008" icon="\uf1b9" block="Urban Rescue" 
 namespace Movement { 
     /** * Drive forward for a number of seconds. */ 
     //% block="move %name for %seconds seconds" 
@@ -43,13 +43,13 @@ namespace Movement {
     //% weight=90 
             
     export function turn(name: turnOptions, deg: number) : void{ 
-        if (name === turnOptions.left){ 
+        if (name === turnOptions.right){ 
                 drive(100, -100) 
             } 
         else { 
                 drive(-100, 100) 
            } 
-        basic.pause(9*deg);   
+        basic.pause(9.6 * deg);   
         brake()         
         }
 
