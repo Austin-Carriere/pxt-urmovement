@@ -38,34 +38,39 @@ let ambientLightValue = 85;
 
 function speedToAngle(speed: number): number { return (speed / 100 * 90 + 90) }
 
-function getColor(rgb: Array<number>): colors {
-    let red = rgb[0] > ambientLightValue
-    let green = rgb[1] > ambientLightValue
-    let blue = rgb[2] > ambientLightValue
+function getColor(rgb: number[]): colors {
 
-    if (red) {
-        if (green) {
-            if (blue) {
-                return colors.White
-            } else {
-                return colors.Yellow
-            }
-        } else if (blue) {
-            return colors.Purple
-        } else {
-            return colors.Red
-        }
-    } else if (green) {
-        if (blue) {
-            return colors.Cyan
-        } else {
-            return colors.Green
-        }
-    } else if (blue) {
-        return colors.Blue
-    } else {
+    let total = rgb[0] + rgb[1] + rgb[2]
+
+    if (total < 20)
         return colors.Black
-    }
+
+    let r = rgb[0] / total
+    let g = rgb[1] / total
+    let b = rgb[2] / total
+
+    if (r > 0.55 && g < 0.30 && b < 0.30)
+        return colors.Red
+
+    if (g > 0.45 && r < 0.35 && b < 0.35)
+        return colors.Green
+
+    if (b > 0.45 && r < 0.35 && g < 0.35)
+        return colors.Blue
+
+    if (r > 0.40 && g > 0.35 && b < 0.20)
+        return colors.Yellow
+
+    if (r > 0.35 && b > 0.35)
+        return colors.Purple
+
+    if (g > 0.35 && b > 0.35)
+        return colors.Cyan
+
+    if (r > 0.30 && g > 0.30 && b > 0.30)
+        return colors.White
+
+    return colors.Black
 }
 /** * Drive a robot using continuous rotation servos. */ 
 //% color="#f4e008" icon="\uf1b9" block="Urban Rescue"
@@ -128,31 +133,6 @@ namespace UrbanRescue {
         let rgb = [Brickcell.getRed(), Brickcell.getGreen(), Brickcell.getBlue()]
         basic.showString(getColor(rgb).toString());
         return getColor(rgb) === color
-    }
-
-    //%block="change ambient %value"
-    export function changeAmbient(value: number): void {
-        ambientLightValue += value
-    }
-
-    //%block="show Ambient"
-    export function showAmbient(): void {
-        basic.showNumber(ambientLightValue);
-        basic.pause(2000)
-    }
-
-
-    //%block="averageAmbient"
-    export function averageAmbient(): void{
-        let total = 0
-        for (let i = 0; i < 30; i++){
-            total += Brickcell.getRed()
-            total += Brickcell.getGreen()
-            total += Brickcell.getBlue()
-            basic.pause(100)
-        }
-
-        ambientLightValue = (total/90)
     }
 
 
