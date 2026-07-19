@@ -52,7 +52,7 @@ function getColor(rgb: number[]): colors {
     if (r > 0.55 && g < 0.30 && b < 0.30)
         return colors.Red
 
-    if (g > 0.45 && r < 0.35 && b < 0.35)
+    if (g > 0.45 && r < 0.25 && b < 0.25)
         return colors.Green
 
     if (b > 0.45 && r < 0.35 && g < 0.35)
@@ -64,7 +64,7 @@ function getColor(rgb: number[]): colors {
     if (r > 0.35 && b > 0.35)
         return colors.Purple
 
-    if (g > 0.35 && b > 0.35)
+    if (g > 0.35 && b > 0.55)
         return colors.Cyan
 
     if (r > 0.30 && g > 0.30 && b > 0.30)
