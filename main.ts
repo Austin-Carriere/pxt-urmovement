@@ -34,7 +34,7 @@ let leftMoveOffset = 0
 
 let rightMoveOffset = 0;
 
-const ambientLightValue = 85;
+let ambientLightValue = 85;
 
 function speedToAngle(speed: number): number { return (speed / 100 * 90 + 90) }
 
@@ -128,6 +128,11 @@ namespace UrbanRescue {
         let rgb = [Brickcell.getRed(), Brickcell.getGreen(), Brickcell.getBlue()]
         basic.showString(getColor(rgb).toString());
         return getColor(rgb) === color
+    }
+
+    //%block="change ambient %value"
+    export function changeAmbient(value: number): void {
+        ambientLightValue += value
     }
 
 
