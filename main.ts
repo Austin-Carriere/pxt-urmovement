@@ -47,7 +47,7 @@ function getColor(rgb: number[]): colors {
     let b = rgb[2]/total
 
     let red = [0.5, 0.25, 0.25, colors.Red]
-    let green = [0.2, 0.45, 0.35, colors.Green]
+    let green = [0.23, 0.48, 0.29, colors.Green]
     let blue = [0.25, 0.3, 0.45, colors.Blue]
     let yellow = [0.42, 0.42, 0.16, colors.Yellow]
     let purple = [0.42, 0.16, 0.42, colors.Purple]
