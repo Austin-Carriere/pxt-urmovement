@@ -5,7 +5,6 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "RingbitCar": "github:tinkertanker/pxt-ringbitcar#v3.1.5",
         "brickcell-color-tcs34725": "github:gbantique/brickcell-color-tcs34725#1a3e1ae70379b6fcb25b93bdfd64db0b82b06c4e"
     },
     "files": [

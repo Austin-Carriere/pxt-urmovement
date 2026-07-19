@@ -7,12 +7,66 @@ enum turnOptions {
     //%block="left"
     left,
     //%block="right" 
-    right } 
+    right
+} 
+    
+enum colors{
+    //% block="red"
+    Red,
+    //% block="orange"
+    Orange,
+    //% block="yellow"
+    Yellow, 
+    //% block="green"
+    Green, 
+    //%block="cyan"
+    Cyan,
+    //% block="blue"
+    Blue,
+    //% block="purple"
+    Purple,
+    //%block="white"
+    White,
+    //%block="black"
+    Black
+}
 let leftMoveOffset = 0
 
 let rightMoveOffset = 0;
 
+const ambientLightValue = 85;
+
 function speedToAngle(speed: number): number { return (speed / 100 * 90 + 90) }
+
+function getColor(rgb: Array<number>): colors {
+    let red = rgb[0] > ambientLightValue
+    let green = rgb[1] > ambientLightValue
+    let blue = rgb[2] > ambientLightValue
+
+    if (red) {
+        if (green) {
+            if (blue) {
+                return colors.White
+            } else {
+                return colors.Yellow
+            }
+        } else if (blue) {
+            return colors.Purple
+        } else {
+            return colors.Red
+        }
+    } else if (green) {
+        if (blue) {
+            return colors.Cyan
+        } else {
+            return colors.Green
+        }
+    } else if (blue) {
+        return colors.Blue
+    } else {
+        return colors.Black
+    }
+}
 /** * Drive a robot using continuous rotation servos. */ 
 //% color="#f4e008" icon="\uf1b9" block="Urban Rescue"
 namespace UrbanRescue { 
@@ -69,5 +123,16 @@ namespace UrbanRescue {
         pins.servoWritePin(AnalogPin.P2, 90)
     }
 
+    //%block="is detecting %color ?"
+    export function isColor(color: colors): boolean {
+        let rgb = [Brickcell.getRed(), Brickcell.getGreen(), Brickcell.getBlue()]
+        basic.showString(getColor(rgb).toString());
+        return getColor(rgb) === color
+    }
+
+
+
 }
+
+
 
