@@ -135,6 +135,22 @@ namespace UrbanRescue {
         ambientLightValue += value
     }
 
+    //%block="show Ambient"
+    export function showAmbient(): void {
+        basic.showNumber(ambientLightValue);
+        basic.pause(2000)
+    }
+
+    export function averageAmbient(): void{
+        let total = 0
+        for (let i = 0; i < 30; i++){
+            total += Brickcell.getRed()
+            total += Brickcell.getGreen()
+            total += Brickcell.getBlue()
+        }
+
+        ambientLightValue = (total/90)
+    }
 
 
 }
