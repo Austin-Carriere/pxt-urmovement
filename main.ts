@@ -149,6 +149,7 @@ namespace UrbanRescue {
             total += Brickcell.getRed()
             total += Brickcell.getGreen()
             total += Brickcell.getBlue()
+            basic.pause(100)
         }
 
         ambientLightValue = (total/90)
