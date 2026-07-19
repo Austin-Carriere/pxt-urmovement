@@ -40,37 +40,44 @@ function speedToAngle(speed: number): number { return (speed / 100 * 90 + 90) }
 
 function getColor(rgb: number[]): colors {
 
-    let total = rgb[0] + rgb[1] + rgb[2]
+    let total = rgb[0] + rgb[1] + rgb[2];
 
-    if (total < 20)
-        return colors.Black
+    if (total < 200) return colors.Black
 
-    let r = rgb[0] / total
-    let g = rgb[1] / total
-    let b = rgb[2] / total
+    let r = rgb[0]/total
+    let g = rgb[1]/total
+    let b = rgb[2]/total
 
-    if (r > 0.5 && g < 0.30 && b < 0.30)
-        return colors.Red
+    let red = [0.70, 0.15, 0.15, colors.Red]
+    let green = [0.15, 0.7, 0.15, colors.Green]
+    let blue = [0.15, 0.15, 0.7, colors.Blue]
+    let yellow = [0.42, 0.42, 0.16, colors.Yellow]
+    let white = [0.33, 0.33, 0.33, colors.White]
+    let purple = [0.42, 0.16, 0.42, colors.Purple]
+    let cyan = [0.16, 0.42, 0.42, colors.Cyan]
+    let orange = [0.5, 0.25, 0.25, colors.Orange]
 
-    if (g > 0.4 && r < 0.2 && b < 0.20)
-        return colors.Green
+    let colorArray = [red, orange, yellow, green, blue, purple, white, cyan]
 
-    if (b > 0.4 && r < 0.3 && g < 0.25)
-        return colors.Blue
+    let closestColor = colors.Red
+    let smallestDistance = Infinity
+    for (let color of colorArray) {
+         let distance =
+            Math.pow(r - color[0], 2) +
+            Math.pow(g - color[1], 2) +
+            Math.pow(b - color[2], 2)
 
-    if (r > 0.40 && g > 0.35 && b < 0.20)
-        return colors.Yellow
+        if (distance < smallestDistance) {
+            smallestDistance = distance
+            closestColor = color[3]
+        }
+    }
+    basic.showString("RGB")
+    basic.showNumber(r)
+    basic.showNumber(g)
+    basic.showNumber(b)
+    return closestColor
 
-    if (r > 0.35 && b > 0.35)
-        return colors.Purple
-
-    if (g > 0.35 && b > 0.55)
-        return colors.Cyan
-
-    if (r > 0.30 && g > 0.30 && b > 0.30)
-        return colors.White
-
-    return colors.Black
 }
 /** * Drive a robot using continuous rotation servos. */ 
 //% color="#f4e008" icon="\uf1b9" block="Urban Rescue"
