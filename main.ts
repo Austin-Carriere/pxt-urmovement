@@ -49,13 +49,13 @@ function getColor(rgb: number[]): colors {
     let g = rgb[1] / total
     let b = rgb[2] / total
 
-    if (r > 0.55 && g < 0.30 && b < 0.30)
+    if (r > 0.5 && g < 0.30 && b < 0.30)
         return colors.Red
 
-    if (g > 0.45 && r < 0.25 && b < 0.25)
+    if (g > 0.4 && r < 0.2 && b < 0.20)
         return colors.Green
 
-    if (b > 0.45 && r < 0.35 && g < 0.35)
+    if (b > 0.4 && r < 0.3 && g < 0.25)
         return colors.Blue
 
     if (r > 0.40 && g > 0.35 && b < 0.20)
