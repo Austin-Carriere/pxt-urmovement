@@ -69,10 +69,6 @@ function getColor(rgb: number[]): colors {
             closestColor = color[3]
         }
     }
-    basic.showString("RGB")
-    basic.showNumber(r)
-    basic.showNumber(g)
-    basic.showNumber(b)
     return closestColor
 
 }
@@ -135,7 +131,6 @@ namespace UrbanRescue {
     //%block="is detecting %color ?"
     export function isColor(color: colors): boolean {
         let rgb = [Brickcell.getRed(), Brickcell.getGreen(), Brickcell.getBlue()]
-        basic.showString(getColor(rgb).toString());
         return getColor(rgb) === color
     }
 
