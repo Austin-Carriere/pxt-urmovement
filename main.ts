@@ -141,6 +141,8 @@ namespace UrbanRescue {
         basic.pause(2000)
     }
 
+
+    //%block="averageAmbient"
     export function averageAmbient(): void{
         let total = 0
         for (let i = 0; i < 30; i++){
