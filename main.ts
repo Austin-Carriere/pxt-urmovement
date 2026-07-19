@@ -25,8 +25,6 @@ enum colors{
     Blue,
     //% block="purple"
     Purple,
-    //%block="white"
-    White,
     //%block="black"
     Black
 }
@@ -48,16 +46,15 @@ function getColor(rgb: number[]): colors {
     let g = rgb[1]/total
     let b = rgb[2]/total
 
-    let red = [0.70, 0.15, 0.15, colors.Red]
-    let green = [0.15, 0.7, 0.15, colors.Green]
-    let blue = [0.15, 0.15, 0.7, colors.Blue]
+    let red = [0.5, 0.25, 0.25, colors.Red]
+    let green = [0.2, 0.45, 0.35, colors.Green]
+    let blue = [0.25, 0.3, 0.45, colors.Blue]
     let yellow = [0.42, 0.42, 0.16, colors.Yellow]
-    let white = [0.33, 0.33, 0.33, colors.White]
     let purple = [0.42, 0.16, 0.42, colors.Purple]
-    let cyan = [0.16, 0.42, 0.42, colors.Cyan]
+    let cyan = [0.12, 0.44, 0.44, colors.Cyan]
     let orange = [0.5, 0.25, 0.25, colors.Orange]
 
-    let colorArray = [red, orange, yellow, green, blue, purple, white, cyan]
+    let colorArray = [red, orange, yellow, green, blue, purple, cyan]
 
     let closestColor = colors.Red
     let smallestDistance = Infinity
