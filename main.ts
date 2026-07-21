@@ -46,10 +46,10 @@ function getColor(rgb: number[]): colors {
     let g = rgb[1]/total
     let b = rgb[2]/total
 
-    let red = [0.5, 0.25, 0.25, colors.Red]
+    let red = [0.45, 0.275, 0.275, colors.Red]
     let green = [0.23, 0.48, 0.29, colors.Green]
     let blue = [0.25, 0.3, 0.45, colors.Blue]
-    let yellow = [0.42, 0.42, 0.16, colors.Yellow]
+    let yellow = [0.43, 0.43, 0.18, colors.Yellow]
     let purple = [0.42, 0.16, 0.42, colors.Purple]
     let cyan = [0.12, 0.44, 0.44, colors.Cyan]
     let orange = [0.5, 0.25, 0.25, colors.Orange]
@@ -78,7 +78,7 @@ namespace UrbanRescue {
     /** * Drive forward for a number of seconds. */ 
     //% block="move %name for %seconds seconds" 
     //% seconds.min=0 //% seconds.defl=0 //% weight=100 
-    
+    //%group="Movement"
     export function forward(name: moveOptions ,seconds: number): void { 
         // Left wheel forward 
         if (name === moveOptions.forward){ drive(100 , 100) } 
@@ -100,7 +100,7 @@ namespace UrbanRescue {
             
     //% block="turn %name %deg degrees" 
     //% weight=90 
-            
+    //%group="Movement"
     export function turn(name: turnOptions, deg: number) : void{ 
         if (name === turnOptions.right){ 
                 drive(100, -100) 
@@ -114,6 +114,7 @@ namespace UrbanRescue {
 
     //% block="drifting to the %name %deg degrees"
     //weight=70
+    //%group="Movement"
     export function driveOffset(name: turnOptions, deg: number): void{
         if (name=== turnOptions.right){
             leftMoveOffset = deg
@@ -123,15 +124,39 @@ namespace UrbanRescue {
     }
     //%block="brake"
     //%weight=80
+    //%group="Movement"
     export function brake(){
         pins.servoWritePin(AnalogPin.P1, 90)
         pins.servoWritePin(AnalogPin.P2, 90)
     }
 
+    //%block="drive %direction"
+    //%weight=81
+    //%group="Movement"
+    export function driveNoStop(direction: moveOptions) {
+         if (direction === moveOptions.forward) {
+            drive(100, 100)
+         } else {
+            drive(-100, -100)
+        }
+    }
+
     //%block="is detecting %color ?"
+    //group="Color Sensor"
     export function isColor(color: colors): boolean {
         let rgb = [Brickcell.getRed(), Brickcell.getGreen(), Brickcell.getBlue()]
         return getColor(rgb) === color
+    }
+
+    //%block="move &direction until detecting %color"
+    //weight=50
+    //group="Color Sensor"
+    export function moveToDetect(direction : moveOptions ,color: colors):void {
+        driveNoStop(direction)
+        while (!isColor(color)) {
+            
+        }
+        brake();
     }
 
 
