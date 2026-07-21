@@ -142,15 +142,15 @@ namespace UrbanRescue {
     }
 
     //%block="is detecting %color ?"
-    //group="Color Sensor"
+    //%group="Color Sensor"
     export function isColor(color: colors): boolean {
         let rgb = [Brickcell.getRed(), Brickcell.getGreen(), Brickcell.getBlue()]
         return getColor(rgb) === color
     }
 
-    //%block="move &direction until detecting %color"
+    //%block="move %direction until detecting %color"
     //weight=50
-    //group="Color Sensor"
+    //%group="Color Sensor"
     export function moveToDetect(direction : moveOptions ,color: colors):void {
         driveNoStop(direction)
         while (!isColor(color)) {
