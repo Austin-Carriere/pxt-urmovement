@@ -116,6 +116,7 @@ namespace UrbanRescue {
     //weight=70
     //%group="Movement"
     export function driveOffset(name: turnOptions, deg: number): void{
+        deg*=4
         if (name=== turnOptions.right){
             leftMoveOffset = deg
         } else {
